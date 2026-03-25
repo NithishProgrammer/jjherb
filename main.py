@@ -1,8 +1,17 @@
 import requests
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # This allows EVERY website to talk to your API
+    allow_credentials=True,
+    allow_methods=["*"],      # This allows POST, GET, etc.
+    allow_headers=["*"],      # This allows all headers
+)
 
 # 1. Define your data structure
 class Item(BaseModel):
